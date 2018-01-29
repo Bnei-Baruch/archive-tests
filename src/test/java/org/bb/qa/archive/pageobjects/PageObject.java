@@ -1,5 +1,6 @@
 package org.bb.qa.archive.pageobjects;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.NotImplementedException;
 import org.bb.qa.archive.helpers.UrlBuilder;
 import org.bb.qa.common.drivers.DriverProvider;
@@ -12,7 +13,11 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -283,6 +288,34 @@ public class PageObject {
         action.clickAndHold(dragFrom).moveByOffset(0, yOffset).build().perform();
         driver.getTitle();
     }
+
+    public String getScreenShot (String imageName) throws IOException {
+
+
+        if (imageName.equals ("")) {
+            imageName = "blank";
+        }
+        File image = ((TakesScreenshot) driver).getScreenshotAs (OutputType.FILE);
+        String imagelocation = System.getProperty ("user.dir") + "/src/Screenshot/";
+        Calendar calendar = Calendar.getInstance ();
+        SimpleDateFormat formater = new SimpleDateFormat ("dd_MM_yyyy_hh_mm_ss");
+        String actualImageName = imagelocation + imageName + "_" + formater.format (calendar.getTime ()) + ".png";
+        File destFile = new File (actualImageName);
+        FileUtils.copyFile (image, destFile);
+
+        return actualImageName;
+    }
+
+    public boolean pageStartFromeTheTop () throws IOException {
+        boolean flag=false;
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        Long value = (Long) executor.executeScript("return window.pageYOffset;");
+        if (value!=0){
+            getScreenShot ("page not open from the top, pageTitle - ");
+        }
+        else flag=true;
+        return flag;
+}
 
 }
 
