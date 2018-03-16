@@ -88,7 +88,6 @@ public class PlayerTest extends TestTemplate {
         assertThat("player.Controls.isDisplayed", !Controls.isHidden());
     }
 
-
     @Test
     public void isTimeCodeUpdatedBySeek() {
         Player player = new LessonUnitPage().open().player;
@@ -101,7 +100,6 @@ public class PlayerTest extends TestTemplate {
 
 
     }
-
 
     @Test
     public void timeCodeUpdateByLink() {
@@ -134,7 +132,6 @@ public class PlayerTest extends TestTemplate {
         assertThat("video.playbackRate", player.getPlaybackRate().equals("1"));
     }
 
-
     @Test
     public void volumeBar() {
 
@@ -149,7 +146,6 @@ public class PlayerTest extends TestTemplate {
     public void languageSelector() {
 
     }
-
     @Test
     public void fullScreenToggle() {
 
