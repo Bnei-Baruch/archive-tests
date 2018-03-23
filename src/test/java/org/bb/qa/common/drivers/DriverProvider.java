@@ -47,6 +47,7 @@ public class DriverProvider {
                     driver.manage().deleteAllCookies();
                     driver.quit();
                 } catch (UnsatisfiedLinkError | NoClassDefFoundError | NullPointerException e) {
+                    driver.quit();
                     logger.info("Error closing Browser", e);
                 }
             }

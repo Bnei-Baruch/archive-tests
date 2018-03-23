@@ -20,7 +20,9 @@ public class ChromeBrowser extends BrowserAbstract {
     public void setOptions() {
         options.addArguments("--test-type");
         options.addArguments("--disable-extensions"); //to disable browser extension popup
-        options.addArguments("disable-infobars");     //to disable infobars
+        options.addArguments("--disable-infobars");     //to disable infobars
+        options.addArguments("--single-process");
+        options.addArguments("--headless");
 
 
         Emulator emulator = Configuration.getEmulator();
