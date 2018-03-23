@@ -20,7 +20,7 @@ public class UnitMaterials extends PageObject {
 
 
     // בודק ישור לימין בתמליל
-    public boolean unitMaterialsLanguageAlignment () throws InterruptedException {
+    public boolean unitMaterialsLanguageAlignment () {
         boolean flag = false;
 //        driver = new HtmlUnitDriver ();
         driver.get ("https://archive.kbb1.com/events/c/DIcWK1yE?language=en");
